@@ -3,6 +3,15 @@ import Router from 'next/router';
 import { I18nProvider } from 'next-localization';
 import NProgress from 'nprogress';
 
+import OcProvider from '../ordercloud/redux/ocProvider'
+
+const ocConfig = {
+  clientId: '9596A5CD-C132-44A9-A67F-97709806B192',
+  baseApiUrl: 'https://sandboxapi.ordercloud.io',
+  scope: ['Shopper'],
+  allowAnonymous: Boolean("true")
+};
+
 // Using bootstrap and nprogress are completely optional.
 //  bootstrap is used here to provide a clean layout for samples, without needing extra CSS in the sample app
 //  nprogress provides a loading indicator on page/route changes
@@ -25,7 +34,9 @@ function App({ Component, pageProps }: AppProps): JSX.Element {
     // Note Next.js does not (currently) provide anything for translation, only i18n routing.
     // If your app is not multilingual, next-localization and references to it can be removed.
     <I18nProvider lngDict={dictionary} locale={pageProps.locale}>
-      <Component {...rest} />
+      <OcProvider config={ocConfig}>
+        <Component {...rest} />
+      </OcProvider>
     </I18nProvider>
   );
 }
