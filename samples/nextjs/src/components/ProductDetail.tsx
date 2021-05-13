@@ -9,20 +9,11 @@ interface ProductDetailProps {
 }
 
 export const getImageUrlByType = (a:any, type:string) => {
-  let image = a.Images.find(i => i.ImageType === type)
-  return image ? image.imageUrl : a.Images[0].imageUrl;
+  return `https://picsum.photos/439?random=` + Math.floor(Math.random() * 1000);
 }
 
 export const getMasterImageUrl = (p:BuyerProduct) => {
-  if(p.xp.MasterAsset && p.xp.MasterAsset.length ){
-    return getImageUrlByType(p.xp.MasterAsset[0], 'downloadOriginal')
-  }
-
-  if(p.xp.Assets && p.xp.Assets.length ){
-    return getImageUrlByType(p.xp.Assets[0], 'downloadOriginal')
-  }
-
-  return `https://picsum.photos/539?random=` + Math.floor(Math.random() * 100);
+  return `https://picsum.photos/439?random=` + Math.floor(Math.random() * 1000);
 }
 
 export const getSortedProductAssets = (p:BuyerProduct) => {
